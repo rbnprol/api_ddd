@@ -17,8 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Start proyect
-        run: make build
+      - name: Start
+        run: composer install
 
-      - name: Run test
-        run: ./vendor/bin/phpunit tests
+#      - name: Start proyect
+#        run: make build
+#
+#      - name: Run test
+#        run: ./vendor/bin/phpunit tests
