@@ -1,0 +1,31 @@
+{% extends '@!NelmioApiDoc/SwaggerUi/index.html.twig' %}
+
+{% block header %}
+    <a id="logo" href="https://winche.com">
+        <img src="https://winche.com/wp-content/uploads/2019/11/42x42_completo.png" alt="Winche Api">
+    </a>
+{% endblock header %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #swagger-ui.api-platform .info .title {
+            color: #115A5E;
+        }
+        header:before {
+            background-color: white;
+        }
+        header a{
+            left: 15px;
+        }
+        header #logo img {
+            background: none;
+        }
+        .version-stamp {
+            display: none!important;
+        }
+        .swagger-ui .opblock table tbody tr td:first-of-type {
+            padding: 27px 0!important;
+        }
+    </style>
+{% endblock stylesheets %}

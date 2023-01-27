@@ -1,0 +1,14 @@
+<doctrine-mapping>
+    <entity name="App\Visit\Domain\Visit" table="winche_api.v_visit">
+        <id name="id" column="id" type="integer" nullable="false"/>
+        <field name="projectId" column="project_id" type="integer" nullable="false"/>
+        <field name="shopId" column="shop_id" type="integer" nullable="false"/>
+        <field name="shop" column="shop" type="string" nullable="false"/>
+        <field name="employee" column="employee" type="string" nullable="false"/>
+        <field name="date" column="date" type="date" nullable="false"/>
+        <field name="comments" column="comments" type="string" nullable="false"/>
+        <field name="timeStart" column="time_start" type="string" nullable="false"/>
+        <field name="timeEnd" column="time_end" type="string" nullable="false"/>
+        <field name="isComplete" column="is_complete" type="boolean" nullable="false"/>
+    </entity>
+</doctrine-mapping>

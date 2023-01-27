@@ -1,0 +1,7 @@
+<doctrine-mapping>
+    <entity name="App\Auth\Domain\Auth" table="api.usuario">
+        <id name="id" column="id" type="integer" nullable="false"/>
+        <field name="apiToken" column="api_token" type="string" nullable="false"/>
+        <field name="project" column="project" type="integer" nullable="false"/>
+    </entity>
+</doctrine-mapping>

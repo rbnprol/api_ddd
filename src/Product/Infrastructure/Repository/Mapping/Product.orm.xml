@@ -1,0 +1,14 @@
+<doctrine-mapping>
+    <entity name="App\Product\Domain\Product" table="winche_api.v_product">
+        <id name="id" column="id" type="integer" nullable="false"/>
+        <field name="projectId" column="project_id" type="integer" nullable="false"/>
+        <field name="category" column="category" type="string" nullable="false"/>
+        <field name="group" column="`group`" type="string" nullable="false"/>
+        <field name="brand" column="brand" type="string" nullable="false"/>
+        <field name="product" column="product" type="string" nullable="false"/>
+        <field name="ean" column="ean" type="string" nullable="false"/>
+        <field name="price" column="price" type="float" nullable="false"/>
+        <field name="capacity" column="capacity" type="float" nullable="false"/>
+        <field name="isActive" column="is_active" type="boolean" nullable="false"/>
+    </entity>
+</doctrine-mapping>

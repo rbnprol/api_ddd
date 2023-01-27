@@ -1,0 +1,16 @@
+<doctrine-mapping>
+    <entity name="App\Shop\Domain\Shop" table="winche_api.v_shop">
+        <id name="id" column="id" type="integer" nullable="false"/>
+        <field name="projectId" column="project_id" type="integer" nullable="false"/>
+        <field name="shopType" column="shop_type" type="string" nullable="false"/>
+        <field name="label" column="label" type="string" nullable="false"/>
+        <field name="name" column="name" type="string" nullable="false"/>
+        <field name="address" column="address" type="string" nullable="false"/>
+        <field name="postalCode" column="postal_code" type="string" nullable="false"/>
+        <field name="country" column="country" type="string" nullable="false"/>
+        <field name="autonomy" column="autonomy" type="string" nullable="false"/>
+        <field name="province" column="province" type="string" nullable="false"/>
+        <field name="population" column="population" type="string" nullable="false"/>
+        <field name="isActive" column="is_active" type="boolean" nullable="false"/>
+    </entity>
+</doctrine-mapping>

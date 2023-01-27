@@ -1,0 +1,23 @@
+nelmio_api_doc:
+  areas: # to filter documented areas
+    path_patterns:
+      - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+
+  documentation:
+    servers:
+      - url: http://localhost
+        description: API over HTTP
+      - url: https://localhost
+        description: API over HTTPS
+    info:
+      title: Winche Cloud API
+      description: Winche Redes Comerciales S.L
+      version: 1.0.0
+    security:
+      ApiKeyAuth: [ ]
+    components:
+      securitySchemes:
+        ApiKeyAuth:
+          type: apiKey
+          in: header
+          name: X-AUTH-TOKEN
