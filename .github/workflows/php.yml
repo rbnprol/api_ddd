@@ -21,7 +21,7 @@ jobs:
         run: composer install
 
       - name: Start proyect
-        run: make build
+        run: ./bin/console doctrine:migrations:migrate
 
       - name: Run test
         run: ./vendor/bin/phpunit tests
