@@ -1,5 +1,5 @@
 <doctrine-mapping>
-    <entity name="App\Product\Domain\Product" table="winche_api.v_product">
+    <entity name="App\Product\Domain\Product" table="product">
         <id name="id" column="id" type="integer" nullable="false"/>
         <field name="projectId" column="project_id" type="integer" nullable="false"/>
         <field name="category" column="category" type="string" nullable="false"/>

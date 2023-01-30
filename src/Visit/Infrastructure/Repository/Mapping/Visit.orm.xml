@@ -1,5 +1,5 @@
 <doctrine-mapping>
-    <entity name="App\Visit\Domain\Visit" table="winche_api.v_visit">
+    <entity name="App\Visit\Domain\Visit" table="visit">
         <id name="id" column="id" type="integer" nullable="false"/>
         <field name="projectId" column="project_id" type="integer" nullable="false"/>
         <field name="shopId" column="shop_id" type="integer" nullable="false"/>
