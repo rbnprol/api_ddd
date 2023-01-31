@@ -51,9 +51,7 @@ jobs:
         run: php bin/console about
 
       - name: Run functionnal and unit tests
-        run: |
-          cp phpunit.xml.ci phpunit.xml
-          make test-all
+        run: ./vendor/bin/phpunit tests
 
     services:
       mysql:
