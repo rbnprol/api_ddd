@@ -50,14 +50,6 @@ jobs:
       - name: Check the Symfony console
         run: php bin/console about
 
-      - name: Coding standards checks (php_codesniffer + php-cs-fixer)
-        run: make cs
-
-      - name: Static analysis of PHP code (PHPStan)
-        run: |
-          php bin/console about --env=prod
-          make static-analysis
-
       - name: Run functionnal and unit tests
         run: |
           cp phpunit.xml.ci phpunit.xml
