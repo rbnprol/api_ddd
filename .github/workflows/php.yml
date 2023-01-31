@@ -6,22 +6,76 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
-  build:
+  symony:
 
+    name: Symfony 6.2 (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      strategy:
+        fail-fast: true
+        matrix:
+          php-versions: [ '8.2']
 
-      - name: Install composer
-        run: composer install
+  steps:
 
-      - name: Start proyect
-        run: ./vendor/bin/doctrine-migrations generate
+    - name: Checkout
+      uses: actions/checkout@v3
 
-      - name: Run test
-        run: ./vendor/bin/phpunit tests
+    - name: Setup PHP, extensions and composer with shivammathur/setup-php
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: mbstring, xml, ctype, iconv, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json, mbstring
+      env:
+        update: true
+
+    - name: Check PHP Version
+      run: php -v
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Get composer cache directory
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - name: Cache composer dependencies
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+
+    - name: Install Composer dependencies
+      run: make install
+
+    - name: Check Symfony requirements
+      run: vendor/bin/requirements-checker
+
+    - name: Check the Symfony console
+      run: |
+        bin/console about
+        bin/console strangebuzz:version
+
+    - name: Coding standards checks (php_codesniffer + php-cs-fixer)
+      run: make cs
+      if: matrix.php-versions == '8.2'
+
+    - name: Static analysis of PHP code (PHPStan)
+      run: |
+        bin/console about --env=prod
+        make static-analysis
+
+    - name: Run functionnal and unit tests
+      run: |
+        cp phpunit.xml.ci phpunit.xml
+        make test-all
