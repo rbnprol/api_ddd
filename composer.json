@@ -1,5 +1,6 @@
 {
     "type": "project",
+    "description": "Ivo Project",
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
