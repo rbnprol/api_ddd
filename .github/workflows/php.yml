@@ -35,7 +35,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -52,6 +52,9 @@ jobs:
 
       - name: Run functionnal and unit tests
         run: ./vendor/bin/phpunit tests
+
+      - name: Run Migrations 
+        run: Migration doctrine:migrations:migrate
 
     services:
       mysql:
